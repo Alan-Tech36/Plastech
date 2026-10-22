@@ -1,1112 +1,1425 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full bg-slate-900 text-slate-100">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PLASTECH - Industrial Automation Spares & Refurbished Equipment</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            800: '#0B192C',
-                            900: '#070F1E',
-                            950: '#030712',
-                        },
-                        tech: {
-                            blue: '#1E3E62',
-                            cyan: '#00ADB5',
-                            amber: '#FF9F00',
-                            green: '#00C853',
-                            slate: '#1F2937'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlasTech - Used Automation Equipment & Live Inventory</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              500: '#f97316',
+              600: '#ea580c', // Vibrant Amber/Orange
+              700: '#c2410c',
+            },
+            industrial: {
+              800: '#1e293b',
+              850: '#151f2e',
+              900: '#0f172a',
+              950: '#080d1a',
             }
+          }
         }
-    </script>
-    <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0F172A;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00ADB5;
-        }
-        .grid-pattern {
-            background-image: radial-gradient(rgba(0, 173, 181, 0.15) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom scrollbar for modern industrial feel */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ea580c;
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased flex flex-col min-h-screen">
+<body class="h-full flex flex-col justify-between bg-slate-950 text-slate-100 antialiased selection:bg-brand-600 selection:text-white">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-navy-900 border-b border-slate-800 text-xs py-2 px-4 text-slate-300">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center space-x-4">
-                <span class="flex items-center text-tech-cyan"><i class="fa-solid fa-truck-fast mr-1.5"></i> Express Shipping Across EU</span>
-                <span class="hidden md:inline text-slate-600">|</span>
-                <span class="hidden md:flex items-center text-slate-300"><i class="fa-solid fa-shield-halved mr-1.5 text-tech-amber"></i> All Units 100% Tested & Verified</span>
-            </div>
-            <div class="flex items-center space-x-6">
-                <span class="text-slate-400"><i class="fa-solid fa-phone mr-1"></i> +358 (0) 9 4245 8899</span>
-                <span class="text-slate-400"><i class="fa-solid fa-envelope mr-1"></i> sales@plastech-automation.eu</span>
-                <div class="flex items-center space-x-1 font-mono font-bold text-tech-cyan">
-                    <span>EUR (€)</span>
-                </div>
-            </div>
+  <!-- TOP INDUSTRIAL CONTACT & STATUS BAR -->
+  <header class="border-b border-slate-800 bg-industrial-900 sticky top-0 z-40 shadow-xl">
+    <div class="bg-slate-950 px-4 py-1.5 border-b border-slate-800/80 text-xs text-slate-400">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div class="flex items-center gap-6">
+          <a href="tel:+33602234074" class="flex items-center gap-1.5 hover:text-brand-500 transition-colors">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-500"></i>
+            <span class="font-medium text-slate-300">Sales & Tech Hotline:</span>
+            <span class="font-mono-code text-white">+33 6 02 23 40 74</span>
+          </a>
+          <a href="mailto:alan36@me.com" class="hidden sm:flex items-center gap-1.5 hover:text-brand-500 transition-colors">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-500"></i>
+            <span class="text-slate-300 font-mono-code">alan36@me.com</span>
+          </a>
         </div>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Warehouse Testing Lab Active
+          </span>
+          <span class="text-slate-500 hidden md:inline">|</span>
+          <span class="text-slate-400 hidden md:inline">All Equipment Bench Tested & Guaranteed</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Main Header -->
-    <header class="sticky top-0 z-30 bg-navy-800/95 backdrop-blur-md border-b border-slate-800 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20 gap-4">
-                
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 bg-gradient-to-br from-tech-cyan to-blue-600 rounded-lg flex items-center justify-center font-extrabold text-slate-900 text-xl shadow-lg shadow-tech-cyan/20 group-hover:scale-105 transition-transform">
-                            P
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-2xl font-black tracking-wider text-white font-mono flex items-center gap-1">
-                                PLASTECH <span class="w-2 h-2 bg-tech-cyan rounded-full animate-pulse"></span>
-                            </span>
-                            <span class="text-[10px] uppercase tracking-widest text-tech-cyan font-semibold">Industrial Automation Spares</span>
-                        </div>
-                    </a>
-                </div>
+    <!-- MAIN NAV HEADER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+      <!-- BRAND LOGO -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('catalog')">
+        <div class="bg-gradient-to-br from-brand-500 to-brand-700 text-white p-2.5 rounded-lg shadow-lg shadow-brand-600/20 flex items-center justify-center">
+          <i data-lucide="cpu" class="w-7 h-7"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-black tracking-wider text-white font-mono-code">PLAS<span class="text-brand-500">TECH</span></span>
+            <span class="bg-slate-800 text-brand-500 text-[10px] font-bold tracking-widest px-1.5 py-0.5 rounded border border-brand-500/30 uppercase">AUTO</span>
+          </div>
+          <p class="text-xs text-slate-400 font-medium">Used Industrial Automation & Components</p>
+        </div>
+      </div>
 
-                <!-- Instant Search Bar -->
-                <div class="flex-1 max-w-2xl mx-4 relative hidden md:block">
-                    <div class="relative">
-                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search by MPN, Brand (Siemens, Allen-Bradley, Omron...), Category or Specs..." 
-                            class="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-lg pl-10 pr-10 py-2.5 text-sm focus:outline-none focus:border-tech-cyan focus:ring-1 focus:ring-tech-cyan transition-all font-mono">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
-                        <button onclick="clearSearch()" id="clearSearchBtn" class="hidden absolute right-3 top-3 text-slate-500 hover:text-slate-300">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                </div>
+      <!-- CENTER NAV TABS -->
+      <nav class="hidden md:flex items-center bg-slate-950/80 p-1 rounded-xl border border-slate-800">
+        <button id="nav-catalog" onclick="switchTab('catalog')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-brand-600 text-white shadow-md">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          Equipment Catalog
+        </button>
+        <button id="nav-inventory" onclick="switchTab('inventory')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-white transition-all hover:bg-slate-800/60">
+          <i data-lucide="boxes" class="w-4 h-4"></i>
+          Live Inventory Portal
+          <span id="nav-inv-count" class="bg-brand-500/20 text-brand-400 text-xs px-2 py-0.5 rounded-full font-mono-code border border-brand-500/30">0</span>
+        </button>
+        <button id="nav-quote" onclick="openRfqModal()" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-white transition-all hover:bg-slate-800/60">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          Quick RFQ / Tech Help
+        </button>
+      </nav>
 
-                <!-- Header Actions -->
-                <div class="flex items-center space-x-4">
-                    <!-- Request Quote Trigger -->
-                    <button onclick="openRfqModal()" class="hidden lg:flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-tech-amber font-semibold text-xs border border-tech-amber/30 transition-all">
-                        <i class="fa-solid fa-file-signature"></i>
-                        <span>RFQ / Obsolete Search</span>
-                    </button>
+      <!-- RIGHT UTILITIES (CART & ADMIN QUICK TOGGLE) -->
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCart()" class="relative bg-slate-800 hover:bg-slate-700 text-slate-100 p-2.5 rounded-xl border border-slate-700 transition-all flex items-center gap-2 group">
+          <i data-lucide="shopping-cart" class="w-5 h-5 text-slate-300 group-hover:text-brand-500 transition-colors"></i>
+          <span class="hidden sm:inline font-medium text-sm">Cart</span>
+          <span id="cart-badge" class="bg-brand-600 text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center font-mono-code">0</span>
+        </button>
 
-                    <!-- Cart Button -->
-                    <button onclick="toggleCart()" class="relative p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-lg text-slate-200 hover:text-tech-cyan transition-colors">
-                        <i class="fa-solid fa-cart-shopping text-lg"></i>
-                        <span id="cartBadge" class="absolute -top-2 -right-2 bg-tech-cyan text-slate-950 font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center font-mono">0</span>
-                    </button>
+        <button onclick="switchTab(currentTab === 'catalog' ? 'inventory' : 'catalog')" class="md:hidden bg-slate-800 p-2.5 rounded-xl text-slate-300">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
 
-                    <!-- Mobile Menu Button -->
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-400 hover:text-white">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- MOBILE NAVIGATION STRIP -->
+    <div class="md:hidden flex border-t border-slate-800 bg-slate-950">
+      <button onclick="switchTab('catalog')" id="mobile-nav-catalog" class="flex-1 py-2.5 text-xs font-bold text-center border-b-2 border-brand-500 text-brand-500">
+        Catalog
+      </button>
+      <button onclick="switchTab('inventory')" id="mobile-nav-inventory" class="flex-1 py-2.5 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">
+        Live Stock Portal
+      </button>
+      <button onclick="openRfqModal()" class="flex-1 py-2.5 text-xs font-bold text-center text-slate-400">
+        RFQ / Quote
+      </button>
+    </div>
+  </header>
 
-            <!-- Mobile Search Bar -->
-            <div class="pb-3 md:hidden">
-                <input type="text" id="mobileSearchInput" oninput="handleMobileSearch()" placeholder="Search MPN, Brand, Category..." 
-                    class="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:border-tech-cyan font-mono">
-            </div>
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1">
+
+    <!-- ================= CATALOG VIEW ================= -->
+    <div id="tab-catalog-view" class="space-y-6">
+      
+      <!-- HERO BANNER -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-industrial-900 via-slate-900 to-slate-950 border border-slate-800 p-6 md:p-8 shadow-2xl">
+        <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-brand-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold mb-3">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Tested & Guaranteed Surplus Equipment
+          </div>
+          <h1 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            Quality Used PLCs, HMIs, Drives & Industrial Controls
+          </h1>
+          <p class="mt-2 text-slate-400 text-sm md:text-base">
+            Instant dispatch on thousands of verified pre-owned, refurbished, and new-surplus industrial components from Allen-Bradley, Siemens, ABB, Pro-face, Omron, and Schneider.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-4 text-xs text-slate-300 font-mono-code">
+            <div class="flex items-center gap-1.5"><i data-lucide="check-circle2" class="w-4 h-4 text-brand-500"></i> 100% Bench Tested</div>
+            <div class="flex items-center gap-1.5"><i data-lucide="truck" class="w-4 h-4 text-brand-500"></i> Same-Day Emergency Express Shipping</div>
+            <div class="flex items-center gap-1.5"><i data-lucide="award" class="w-4 h-4 text-brand-500"></i> 12-Month PlasTech Warranty</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEARCH & FILTER CONTROL BAR -->
+      <div class="bg-industrial-900 p-4 rounded-xl border border-slate-800 shadow-md space-y-4">
+        <div class="flex flex-col md:flex-row gap-3">
+          <!-- Instant Search Input -->
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-3 text-slate-400"></i>
+            <input type="text" id="catalog-search" oninput="renderCatalog()" placeholder="Search by Part Number (e.g. 1756-L73, S7-1200), Brand, or Keyword..." class="w-full bg-slate-950 border border-slate-700/80 rounded-lg pl-10 pr-10 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent font-mono-code">
+            <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-3 top-3 text-slate-400 hover:text-white">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Quick Brand Selector -->
+          <div class="w-full md:w-56">
+            <select id="catalog-brand-filter" onchange="renderCatalog()" class="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2.5 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <option value="ALL">All Brands (Allen-Bradley, Siemens...)</option>
+              <option value="Allen-Bradley">Allen-Bradley / Rockwell</option>
+              <option value="Siemens">Siemens SIMATIC</option>
+              <option value="ABB">ABB Automation</option>
+              <option value="Pro-face">Pro-face / Schneider</option>
+              <option value="Omron">Omron Electronics</option>
+              <option value="Mitsubishi">Mitsubishi Electric</option>
+              <option value="Danfoss">Danfoss</option>
+            </select>
+          </div>
+
+          <!-- Quick Condition Filter -->
+          <div class="w-full md:w-52">
+            <select id="catalog-condition-filter" onchange="renderCatalog()" class="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2.5 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <option value="ALL">All Conditions</option>
+              <option value="Refurbished">Refurbished</option>
+              <option value="Tested & Working">Tested & Working</option>
+              <option value="Like New">Like New (Unused Box)</option>
+              <option value="As-Is Parts">As-Is / Spare Parts</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Category Navigation Bar -->
-        <nav class="bg-slate-900/90 border-t border-slate-800/80 overflow-x-auto">
-            <div class="max-w-7xl mx-auto px-4 flex items-center space-x-1 py-1.5 text-xs font-semibold whitespace-nowrap">
-                <button onclick="filterCategory('All')" class="cat-btn px-3 py-1.5 rounded-md text-tech-cyan bg-slate-800 border border-tech-cyan/30 flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-border-all"></i> All Categories
-                </button>
-                <button onclick="filterCategory('PLCs & Modules')" class="cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-microchip"></i> PLCs & Modules
-                </button>
-                <button onclick="filterCategory('Touch Screens / HMIs')" class="cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-desktop"></i> Touch Screens / HMIs
-                </button>
-                <button onclick="filterCategory('Power Supplies')" class="cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-plug"></i> Power Supplies
-                </button>
-                <button onclick="filterCategory('Relays & Contactors')" class="cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-toggle-on"></i> Relays & Contactors
-                </button>
-                <button onclick="filterCategory('Drives & Inverters')" class="cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-gauge-high"></i> Drives & VFDs
-                </button>
-                <button onclick="filterCategory('Sensors & Safety')" class="cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all">
-                    <i class="fa-solid fa-radar"></i> Sensors & Safety
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Banner Section -->
-    <section class="relative bg-navy-900 border-b border-slate-800 overflow-hidden py-10 lg:py-14 grid-pattern">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-8 space-y-4 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tech-cyan/10 border border-tech-cyan/30 text-tech-cyan text-xs font-mono font-semibold">
-                        <span class="w-2 h-2 rounded-full bg-tech-cyan"></span> Over 15,000 Verified Parts in Stock
-                    </div>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                        Tested Pre-Owned & Refurbished <br class="hidden sm:inline">
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-tech-cyan via-blue-400 to-tech-amber">Industrial Automation Spares</span>
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl font-normal leading-relaxed">
-                        Minimize machine downtime with immediate dispatch on rare, obsolete, and surplus PLCs, HMIs, Variable Speed Drives, and Power Supplies. European warranty included on all units.
-                    </p>
-                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-3">
-                        <a href="#catalog" class="px-6 py-3 bg-tech-cyan text-slate-950 hover:bg-cyan-400 font-bold text-sm rounded-lg transition-all shadow-lg shadow-tech-cyan/20 flex items-center gap-2">
-                            <i class="fa-solid fa-boxes-stacked"></i> Browse Catalog
-                        </a>
-                        <button onclick="openRfqModal()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-sm rounded-lg transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-magnifying-glass-location text-tech-amber"></i> Request Hard-To-Find Part
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Featured Brands Grid -->
-                <div class="lg:col-span-4 bg-slate-900/80 p-5 rounded-xl border border-slate-800 shadow-2xl backdrop-blur-sm">
-                    <span class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider block mb-3 border-b border-slate-800 pb-2">
-                        Supported Manufacturers
-                    </span>
-                    <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-                        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex items-center gap-2 text-slate-300 font-bold">
-                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> SIEMENS
-                        </div>
-                        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex items-center gap-2 text-slate-300 font-bold">
-                            <span class="w-2 h-2 bg-red-500 rounded-full"></span> ALLEN-BRADLEY
-                        </div>
-                        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex items-center gap-2 text-slate-300 font-bold">
-                            <span class="w-2 h-2 bg-green-500 rounded-full"></span> SCHNEIDER
-                        </div>
-                        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex items-center gap-2 text-slate-300 font-bold">
-                            <span class="w-2 h-2 bg-cyan-400 rounded-full"></span> OMRON
-                        </div>
-                        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex items-center gap-2 text-slate-300 font-bold">
-                            <span class="w-2 h-2 bg-red-600 rounded-full"></span> MITSUBISHI
-                        </div>
-                        <div class="p-2.5 bg-slate-950 rounded border border-slate-800 flex items-center gap-2 text-slate-300 font-bold">
-                            <span class="w-2 h-2 bg-red-400 rounded-full"></span> ABB / FANUC
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Value Proposition Badges -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 pt-8 border-t border-slate-800/80">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-tech-cyan/10 border border-tech-cyan/30 text-tech-cyan flex items-center justify-center text-lg flex-shrink-0">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-200 uppercase">100% Bench Tested</h4>
-                        <p class="text-[11px] text-slate-400">Verified by certified technicians</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-tech-amber/10 border border-tech-amber/30 text-tech-amber flex items-center justify-center text-lg flex-shrink-0">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-200 uppercase">12-Month Warranty</h4>
-                        <p class="text-[11px] text-slate-400">Full replacement guarantee</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-lg flex-shrink-0">
-                        <i class="fa-solid fa-plane-departure"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-200 uppercase">Express EU Delivery</h4>
-                        <p class="text-[11px] text-slate-400">DHL / FedEx next day option</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 flex items-center justify-center text-lg flex-shrink-0">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-200 uppercase">Obsolete Exchange</h4>
-                        <p class="text-[11px] text-slate-400">Trade-in program available</p>
-                    </div>
-                </div>
-            </div>
+        <!-- CATEGORY BADGE TABS -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs no-scrollbar" id="category-tabs">
+          <!-- Dynamic Category Pills Rendered JS -->
         </div>
-    </section>
+      </div>
 
-    <!-- Main Content Area -->
-    <main id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+      <!-- RESULTS HEADER & SORT -->
+      <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
+        <div>
+          Showing <span id="catalog-count" class="text-white font-bold font-mono-code">0</span> automation items available for immediate purchase
+        </div>
+        <div class="flex items-center gap-2">
+          <span>Sort by:</span>
+          <select id="catalog-sort" onchange="renderCatalog()" class="bg-slate-900 border border-slate-800 text-slate-300 rounded px-2 py-1 focus:outline-none">
+            <option value="featured">PlasTech Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="stock">Stock Level</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- PRODUCT CARDS GRID -->
+      <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <!-- JS rendered items -->
+      </div>
+
+      <!-- NO RESULTS PLACEHOLDER -->
+      <div id="catalog-empty" class="hidden text-center py-16 bg-industrial-900 rounded-2xl border border-slate-800 space-y-3">
+        <i data-lucide="package-x" class="w-12 h-12 text-slate-600 mx-auto"></i>
+        <h3 class="text-lg font-bold text-white">No Equipment Matches Your Filter Criteria</h3>
+        <p class="text-sm text-slate-400 max-w-md mx-auto">We constantly source legacy, rare, and used PLCs and drives. Contact our engineering team for unlisted stock.</p>
+        <button onclick="resetFilters()" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg text-xs font-semibold hover:bg-brand-500">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset All Filters
+        </button>
+      </div>
+    </div>
+
+
+    <!-- ================= LIVE INVENTORY MANAGER (ADMIN PORTAL) ================= -->
+    <div id="tab-inventory-view" class="hidden space-y-6">
+      
+      <!-- INVENTORY HEADER & STATS -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-industrial-900 p-6 rounded-2xl border border-slate-800">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-2xl font-bold text-white font-mono-code">PlasTech Live Inventory Manager</h2>
+            <span class="bg-brand-500/20 text-brand-400 text-xs px-2.5 py-0.5 rounded-md font-semibold border border-brand-500/30">Admin & Stock View</span>
+          </div>
+          <p class="text-slate-400 text-xs mt-1">Real-time stock adjustment, price management, and surplus item ingestion.</p>
+        </div>
+        <button onclick="openAddProductModal()" class="flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-brand-600/20 transition-all">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          Ingest New Equipment
+        </button>
+      </div>
+
+      <!-- METRIC CARDS -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-industrial-900 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+          <div class="p-3 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 font-medium">Total SKUs</p>
+            <p id="stat-total-skus" class="text-xl font-black text-white font-mono-code">0</p>
+          </div>
+        </div>
+
+        <div class="bg-industrial-900 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+          <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-lg border border-emerald-500/20">
+            <i data-lucide="boxes" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 font-medium">Physical Units In Stock</p>
+            <p id="stat-total-units" class="text-xl font-black text-white font-mono-code">0</p>
+          </div>
+        </div>
+
+        <div class="bg-industrial-900 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+          <div class="p-3 bg-amber-500/10 text-amber-400 rounded-lg border border-amber-500/20">
+            <i data-lucide="euro" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 font-medium">Total Inventory Value</p>
+            <p id="stat-total-val" class="text-xl font-black text-white font-mono-code">â‚¬0.00</p>
+          </div>
+        </div>
+
+        <div class="bg-industrial-900 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+          <div class="p-3 bg-rose-500/10 text-rose-400 rounded-lg border border-rose-500/20">
+            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 font-medium">Low Stock Alerts (&le;2)</p>
+            <p id="stat-low-stock" class="text-xl font-black text-white font-mono-code">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- INVENTORY TABLE TOOLBAR -->
+      <div class="bg-industrial-900 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
+        <div class="p-4 border-b border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <div class="relative w-full sm:w-80">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
+            <input type="text" id="inv-search" oninput="renderInventoryTable()" placeholder="Quick filter inventory table..." class="w-full bg-slate-950 border border-slate-700/80 rounded-lg pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono-code">
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="text-slate-400">Filter Stock State:</span>
+            <select id="inv-state-filter" onchange="renderInventoryTable()" class="bg-slate-950 border border-slate-700 text-slate-300 rounded px-2 py-1.5 focus:outline-none">
+              <option value="ALL">All Statuses</option>
+              <option value="IN_STOCK">In Stock (&gt;2)</option>
+              <option value="LOW_STOCK">Low Stock (1-2)</option>
+              <option value="OUT_OF_STOCK">Sold Out / Out of Stock</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-950 text-slate-400 uppercase font-mono-code tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Item & Part Number</th>
+                <th class="py-3 px-4">Brand / Category</th>
+                <th class="py-3 px-4">Condition</th>
+                <th class="py-3 px-4">Unit Price (â‚¬)</th>
+                <th class="py-3 px-4 text-center">Stock Level</th>
+                <th class="py-3 px-4 text-center">Status Badge</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body" class="divide-y divide-slate-800 text-slate-300">
+              <!-- JS Injected rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER WITH CONTACT & SPECIFICATIONS -->
+  <footer class="bg-industrial-900 border-t border-slate-800 mt-12 py-8 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <span class="text-lg font-bold font-mono-code text-white">PLAS<span class="text-brand-500">TECH</span></span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">AUTOMATION</span>
+        </div>
+        <p class="text-slate-400 leading-relaxed">
+          Europe's premier stocking distributor for tested pre-owned PLCs, HMIs, AC/DC drives, servo systems, and obsolete industrial electronics.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white font-mono-code mb-3 uppercase tracking-wider text-[11px]">Direct Contact Lines</h4>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-500"></i>
+            <span>Phone: +33 6 02 23 40 74</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-500"></i>
+            <span class="font-mono-code">alan36@me.com</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i data-lucide="headphones" class="w-3.5 h-3.5 text-brand-500"></i>
+            <span class="font-mono-code">alan36@me.com</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white font-mono-code mb-3 uppercase tracking-wider text-[11px]">Core Stock Categories</h4>
+        <ul class="space-y-1.5 text-slate-400">
+          <li>Programmable Logic Controllers (PLCs)</li>
+          <li>Human Machine Interfaces (HMIs & Touch Screens)</li>
+          <li>Variable Frequency Drives (VFDs) & DC Drives</li>
+          <li>Safety Relays, Contactors & I/O Modules</li>
+          <li>Proximity, Photoelectric & Laser Sensors</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white font-mono-code mb-3 uppercase tracking-wider text-[11px]">PlasTech Quality Pledge</h4>
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 space-y-2">
+          <div class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> 1-Year Comprehensive Guarantee
+          </div>
+          <p class="text-[11px] text-slate-400">
+            All pre-owned modules undergo multi-point I/O rack testing, terminal inspection, and capacitor health checks prior to dispatch.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 mt-6 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-slate-500">
+      <p>&copy; 2026 PlasTech Automation Equipment Sales Inc. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 sm:mt-0">
+        <span>Terms of Sale</span>
+        <span>Return Policy</span>
+        <span>ISO 9001:2015 Bench Certified</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ================= MODALS & SLIDE-OVERS ================= -->
+
+  <!-- 1. SLIDE-OVER SHOPPING CART -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
+    <!-- Backdrop -->
+    <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div id="cart-panel" class="w-screen max-w-md bg-industrial-900 border-l border-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto flex flex-col">
         
-        <div class="flex flex-col lg:flex-row gap-8">
-            
-            <!-- Sidebar Filters -->
-            <aside class="w-full lg:w-64 flex-shrink-0 space-y-6">
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 sticky top-24 shadow-lg">
-                    <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
-                        <h3 class="font-bold text-sm text-slate-200 uppercase tracking-wider flex items-center gap-2">
-                            <i class="fa-solid fa-filter text-tech-cyan"></i> Filter Spares
-                        </h3>
-                        <button onclick="resetFilters()" class="text-[11px] text-slate-400 hover:text-tech-cyan underline font-mono">
-                            Reset All
-                        </button>
-                    </div>
-
-                    <!-- Category Filter -->
-                    <div class="mb-6">
-                        <label class="block text-xs font-semibold text-slate-300 uppercase font-mono mb-2">Category</label>
-                        <select id="categorySelect" onchange="applyFilters()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-tech-cyan font-mono">
-                            <option value="All">All Categories</option>
-                            <option value="PLCs & Modules">PLCs & Modules</option>
-                            <option value="Touch Screens / HMIs">Touch Screens / HMIs</option>
-                            <option value="Power Supplies">Power Supplies</option>
-                            <option value="Relays & Contactors">Relays & Contactors</option>
-                            <option value="Drives & Inverters">Drives & Inverters</option>
-                            <option value="Sensors & Safety">Sensors & Safety</option>
-                        </select>
-                    </div>
-
-                    <!-- Brand Filter -->
-                    <div class="mb-6">
-                        <label class="block text-xs font-semibold text-slate-300 uppercase font-mono mb-2">Manufacturer</label>
-                        <div class="space-y-2 max-h-40 overflow-y-auto pr-1">
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
-                                <input type="checkbox" value="Siemens" class="brand-checkbox rounded bg-slate-950 border-slate-700 text-tech-cyan focus:ring-0" onchange="applyFilters()"> Siemens
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
-                                <input type="checkbox" value="Allen-Bradley" class="brand-checkbox rounded bg-slate-950 border-slate-700 text-tech-cyan focus:ring-0" onchange="applyFilters()"> Allen-Bradley
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
-                                <input type="checkbox" value="Schneider Electric" class="brand-checkbox rounded bg-slate-950 border-slate-700 text-tech-cyan focus:ring-0" onchange="applyFilters()"> Schneider Electric
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
-                                <input type="checkbox" value="Omron" class="brand-checkbox rounded bg-slate-950 border-slate-700 text-tech-cyan focus:ring-0" onchange="applyFilters()"> Omron
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
-                                <input type="checkbox" value="ABB" class="brand-checkbox rounded bg-slate-950 border-slate-700 text-tech-cyan focus:ring-0" onchange="applyFilters()"> ABB
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer hover:text-white">
-                                <input type="checkbox" value="Phoenix Contact" class="brand-checkbox rounded bg-slate-950 border-slate-700 text-tech-cyan focus:ring-0" onchange="applyFilters()"> Phoenix Contact
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Condition Filter -->
-                    <div class="mb-6">
-                        <label class="block text-xs font-semibold text-slate-300 uppercase font-mono mb-2">Condition</label>
-                        <div class="space-y-2">
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-                                <input type="radio" name="condition" value="All" checked onchange="applyFilters()" class="text-tech-cyan focus:ring-0 bg-slate-950"> All Conditions
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-                                <input type="radio" name="condition" value="Refurbished / Tested" onchange="applyFilters()" class="text-tech-cyan focus:ring-0 bg-slate-950"> Refurbished & Tested
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-                                <input type="radio" name="condition" value="Used - Like New" onchange="applyFilters()" class="text-tech-cyan focus:ring-0 bg-slate-950"> Used - Like New
-                            </label>
-                            <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-                                <input type="radio" name="condition" value="Used - Grade A/B" onchange="applyFilters()" class="text-tech-cyan focus:ring-0 bg-slate-950"> Used - Grade A/B
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Price Range Slider -->
-                    <div>
-                        <div class="flex justify-between items-center mb-2">
-                            <label class="text-xs font-semibold text-slate-300 uppercase font-mono">Max Price</label>
-                            <span id="priceValue" class="text-xs font-mono font-bold text-tech-cyan">€2,500</span>
-                        </div>
-                        <input type="range" id="priceRange" min="50" max="3000" step="50" value="2500" oninput="updatePriceSlider(this.value)" class="w-full accent-tech-cyan bg-slate-950 rounded">
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Product Grid Area -->
-            <div class="flex-1">
-                <!-- Sorting & Top Bar -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <div class="text-xs text-slate-300 font-mono">
-                        Showing <span id="itemCount" class="font-bold text-tech-cyan">0</span> automation items
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <label class="text-xs text-slate-400 font-mono">Sort By:</label>
-                        <select id="sortSelect" onchange="applyFilters()" class="bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:border-tech-cyan font-mono">
-                            <option value="featured">Featured / Stock Relevance</option>
-                            <option value="price-asc">Price: Low to High</option>
-                            <option value="price-desc">Price: High to Low</option>
-                            <option value="brand">Brand Name</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Product Grid -->
-                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <!-- Dynamic Product Cards injected via JavaScript -->
-                </div>
-
-                <!-- Empty Search State (Hidden by default) -->
-                <div id="noResults" class="hidden text-center py-16 bg-slate-900/50 border border-slate-800 rounded-xl">
-                    <i class="fa-solid fa-boxes-searching text-4xl text-slate-600 mb-3"></i>
-                    <h3 class="text-lg font-bold text-slate-200">No Automation Spares Found</h3>
-                    <p class="text-slate-400 text-xs mt-1 max-w-md mx-auto">We couldn't find matching parts. Try adjusting your filter terms or request a custom quote from our sourcing team.</p>
-                    <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-tech-cyan text-xs font-semibold rounded-lg border border-slate-700">
-                        Reset Filters
-                    </button>
-                </div>
-            </div>
+        <!-- Cart Header -->
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-500"></i>
+            <h3 class="font-bold text-white font-mono-code text-base">Your Equipment Cart</h3>
+          </div>
+          <button onclick="toggleCart()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-navy-900 border-t border-slate-800 text-slate-400 text-xs mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 bg-tech-cyan rounded flex items-center justify-center font-bold text-slate-950">P</div>
-                        <span class="text-lg font-black text-white font-mono">PLASTECH</span>
-                    </div>
-                    <p class="text-slate-400 leading-relaxed text-[11px]">
-                        Leading European supplier of tested, certified used and refurbished industrial automation components. Reducing factory downtime through fast express logistics.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-200 uppercase font-mono mb-3 text-xs">Categories</h4>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="#" onclick="filterCategory('PLCs & Modules')" class="hover:text-tech-cyan">PLC CPUs & I/O Cards</a></li>
-                        <li><a href="#" onclick="filterCategory('Touch Screens / HMIs')" class="hover:text-tech-cyan">HMI Touch Panels</a></li>
-                        <li><a href="#" onclick="filterCategory('Drives & Inverters')" class="hover:text-tech-cyan">Variable Frequency Drives</a></li>
-                        <li><a href="#" onclick="filterCategory('Power Supplies')" class="hover:text-tech-cyan">Industrial 24V Power Units</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-200 uppercase font-mono mb-3 text-xs">Quality & Warranty</h4>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="#" class="hover:text-tech-cyan">Bench Testing Protocol</a></li>
-                        <li><a href="#" class="hover:text-tech-cyan">12-Month Guarantee Terms</a></li>
-                        <li><a href="#" class="hover:text-tech-cyan">Worldwide Express Shipping</a></li>
-                        <li><a href="#" class="hover:text-tech-cyan">Sell Your Surplus Equipment</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-200 uppercase font-mono mb-3 text-xs">Direct Contact</h4>
-                    <p class="text-[11px] mb-2"><i class="fa-solid fa-location-dot text-tech-cyan mr-1.5"></i> PLASTECH Automation GmbH</p>
-                    <p class="text-[11px] mb-2"><i class="fa-solid fa-phone text-tech-cyan mr-1.5"></i> +358 (0) 9 4245 8899</p>
-                    <p class="text-[11px] mb-3"><i class="fa-solid fa-envelope text-tech-cyan mr-1.5"></i> sales@plastech-automation.eu</p>
-                    <div class="flex space-x-3 text-slate-300">
-                        <a href="#" class="w-7 h-7 bg-slate-800 rounded flex items-center justify-center hover:bg-tech-cyan hover:text-slate-950"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" class="w-7 h-7 bg-slate-800 rounded flex items-center justify-center hover:bg-tech-cyan hover:text-slate-950"><i class="fa-brands fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px]">
-                <p>&copy; 2026 PLASTECH Industrial Automation Spares. All rights reserved.</p>
-                <div class="flex items-center space-x-4">
-                    <span class="text-slate-500">Prices in Euros (€) excluding VAT</span>
-                    <i class="fa-brands fa-cc-visa text-lg text-slate-500"></i>
-                    <i class="fa-brands fa-cc-mastercard text-lg text-slate-500"></i>
-                    <i class="fa-solid fa-building-columns text-lg text-slate-500"></i>
-                </div>
-            </div>
+        <!-- Cart Line Items -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-4">
+          <!-- JS Rendered Cart items -->
         </div>
-    </footer>
 
-    <!-- Slide-over Shopping Cart Drawer -->
-    <div id="cartModal" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
-        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-navy-900 border-l border-slate-800 shadow-2xl flex flex-col">
-                <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-cart-shopping text-tech-cyan"></i>
-                        <h2 class="text-base font-bold text-white uppercase font-mono">Your Cart</h2>
-                    </div>
-                    <button onclick="toggleCart()" class="text-slate-400 hover:text-white p-1">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-
-                <!-- Cart Items Container -->
-                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
-                    <!-- Cart items will be dynamically generated -->
-                </div>
-
-                <!-- Cart Footer / Totals -->
-                <div class="p-5 border-t border-slate-800 bg-slate-900/90 space-y-3">
-                    <div class="space-y-1.5 text-xs font-mono">
-                        <div class="flex justify-between text-slate-400">
-                            <span>Subtotal (excl. VAT)</span>
-                            <span id="cartSubtotal" class="font-bold text-slate-200">€0.00</span>
-                        </div>
-                        <div class="flex justify-between text-slate-400">
-                            <span>Estimated EU Shipping</span>
-                            <span id="cartShipping" class="font-bold text-slate-200">€25.00</span>
-                        </div>
-                        <div class="flex justify-between text-slate-400">
-                            <span>VAT (19%)</span>
-                            <span id="cartVat" class="font-bold text-slate-200">€0.00</span>
-                        </div>
-                        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800">
-                            <span>Total (EUR)</span>
-                            <span id="cartTotal" class="text-tech-cyan">€0.00</span>
-                        </div>
-                    </div>
-
-                    <button onclick="processCheckout()" class="w-full py-3 bg-tech-cyan hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-lg shadow-tech-cyan/20 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-credit-card"></i> Proceed to Order / PO Checkout
-                    </button>
-                    <p class="text-[10px] text-center text-slate-500">Pro-forma invoice & VAT invoice provided automatically upon order.</p>
-                </div>
+        <!-- Cart Summary & Checkout Footer -->
+        <div class="p-4 border-t border-slate-800 bg-slate-950 space-y-3">
+          <div class="space-y-1.5 text-xs text-slate-400">
+            <div class="flex justify-between">
+              <span>Subtotal</span>
+              <span id="cart-subtotal" class="font-mono-code text-white font-bold">â‚¬0.00</span>
             </div>
+            <div class="flex justify-between">
+              <span>Estimated Express Freight</span>
+              <span class="font-mono-code text-slate-300">Calculated at Checkout / Quote</span>
+            </div>
+            <div class="flex justify-between">
+              <span>PlasTech Warranty</span>
+              <span class="text-emerald-400 font-semibold">Included (12 Mos)</span>
+            </div>
+            <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800">
+              <span>Estimated Total</span>
+              <span id="cart-total" class="font-mono-code text-brand-500 text-lg">â‚¬0.00</span>
+            </div>
+          </div>
+
+          <button onclick="openCheckoutModal()" id="btn-proceed-checkout" class="w-full bg-brand-600 hover:bg-brand-500 text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-600/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            <span>Proceed to Formal Purchase / Quote Inquiry</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Quick View Modal -->
-    <div id="quickViewModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
-        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm transition-opacity" onclick="closeQuickView()"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-            <div class="inline-block align-bottom bg-navy-900 rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full border border-slate-800">
-                <div id="quickViewContent" class="p-6">
-                    <!-- Content injected via JS -->
-                </div>
-            </div>
+  <!-- 2. CHECKOUT & FORMAL QUOTE MODAL -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
+    <div class="bg-industrial-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCheckoutModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 border-b border-slate-800 pb-4 mb-5">
+        <div class="p-2.5 bg-brand-500/10 text-brand-500 rounded-xl border border-brand-500/20">
+          <i data-lucide="clipboard-check" class="w-6 h-6"></i>
         </div>
-    </div>
-
-    <!-- RFQ / Custom Sourcing Modal -->
-    <div id="rfqModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
-        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm transition-opacity" onclick="closeRfqModal()"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <div class="inline-block align-bottom bg-navy-900 rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-slate-800">
-                <div class="p-6">
-                    <div class="flex justify-between items-center pb-3 border-b border-slate-800 mb-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-file-signature text-tech-amber"></i>
-                            <h3 class="text-base font-bold text-white uppercase font-mono">Request Quote / Obsolete Search</h3>
-                        </div>
-                        <button onclick="closeRfqModal()" class="text-slate-400 hover:text-white">
-                            <i class="fa-solid fa-xmark text-lg"></i>
-                        </button>
-                    </div>
-
-                    <form id="rfqForm" onsubmit="handleRfqSubmit(event)" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-mono text-slate-300 mb-1">Part Number (MPN) or Description *</label>
-                            <input type="text" required placeholder="e.g. 6ES7 214-1AG40-0XB0" class="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded px-3 py-2 text-xs focus:outline-none focus:border-tech-cyan font-mono">
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-mono text-slate-300 mb-1">Brand / Manufacturer</label>
-                                <input type="text" placeholder="e.g. Siemens" class="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded px-3 py-2 text-xs focus:outline-none focus:border-tech-cyan">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-mono text-slate-300 mb-1">Quantity Required</label>
-                                <input type="number" value="1" min="1" class="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded px-3 py-2 text-xs focus:outline-none focus:border-tech-cyan">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-mono text-slate-300 mb-1">Your Email Address *</label>
-                            <input type="email" required placeholder="engineer@plant.eu" class="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded px-3 py-2 text-xs focus:outline-none focus:border-tech-cyan font-mono">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-mono text-slate-300 mb-1">Additional Technical Requirements / Notes</label>
-                            <textarea rows="3" placeholder="Mention urgency, firmware versions, or machine model..." class="w-full bg-slate-950 border border-slate-700 text-slate-100 rounded px-3 py-2 text-xs focus:outline-none focus:border-tech-cyan"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-2.5 bg-tech-amber hover:bg-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider rounded transition-all shadow-md">
-                            Submit Sourcing Request
-                        </button>
-                    </form>
-                </div>
-            </div>
+        <div>
+          <h3 class="text-lg font-bold text-white font-mono-code">Submit Purchase Order / Formal Quotation Request</h3>
+          <p class="text-xs text-slate-400">PlasTech Sales Team (+33 6 02 23 40 74) will review stock and reply within 15 minutes.</p>
         </div>
+      </div>
+
+      <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="space-y-4 text-xs">
+        <!-- Order Summary Box -->
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-slate-300">
+          <div class="flex justify-between font-bold mb-1">
+            <span>Selected Items Summary</span>
+            <span id="checkout-item-count" class="text-brand-500 font-mono-code">0 Items</span>
+          </div>
+          <div id="checkout-summary-list" class="max-h-24 overflow-y-auto space-y-1 font-mono-code text-[11px] text-slate-400">
+            <!-- Dynamic item lines -->
+          </div>
+          <div class="border-t border-slate-800 mt-2 pt-1 flex justify-between font-bold text-white">
+            <span>Total Value:</span>
+            <span id="checkout-total-val" class="text-brand-500 font-mono-code">â‚¬0.00</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Full Name *</label>
+            <input type="text" required placeholder="John Doe" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Company / Facility Name *</label>
+            <input type="text" required placeholder="Acme Manufacturing Ltd" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Phone Number (Required for Freight) *</label>
+            <input type="tel" required placeholder="+33 6 02 23 40 74" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none font-mono-code">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Business Email Address *</label>
+            <input type="email" required placeholder="alan36@me.com" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none font-mono-code">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Purchase Order (PO) # / Internal Ref</label>
+            <input type="text" placeholder="PO-2026-9811 (Optional)" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none font-mono-code">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Shipping Speed Needed</label>
+            <select class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-brand-500">
+              <option>Emergency Overnight Next Day Air</option>
+              <option>Standard Ground Freight (3-5 Days)</option>
+              <option>Customer Freight Account (DHL/FedEx/UPS)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Special Delivery or Firmware Requirements</label>
+          <textarea rows="2" placeholder="Note required firmware versions, extra photos, or wire terminal configs..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-3">
+          <button type="button" onclick="closeCheckoutModal()" class="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 font-semibold hover:bg-slate-800">
+            Cancel
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold flex items-center gap-2 shadow-lg shadow-brand-600/20">
+            <i data-lucide="send" class="w-4 h-4"></i> Submit Formal Inquiry & Reserve Stock
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <!-- Notification Toast Container -->
-    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Sample Products Database
-        const products = [
-            {
-                id: 'PLAST-101',
-                title: 'SIMATIC S7-1200 CPU 1214C DC/DC/DC',
-                mpn: '6ES7214-1AG40-0XB0',
-                brand: 'Siemens',
-                category: 'PLCs & Modules',
-                condition: 'Refurbished / Tested',
-                warranty: '12 Months',
-                price: 345.00,
-                originalPrice: 620.00,
-                stock: 4,
-                icon: 'fa-microchip',
-                specs: '14 DI / 10 DO 24V DC, 2 AI 0-10V, 100 KB Work Memory, PROFINET Port',
-                serial: 'S VP-F9821102'
-            },
-            {
-                id: 'PLAST-102',
-                title: 'SIMATIC HMI KTP700 Basic Panel Touch',
-                mpn: '6AV2123-2GB03-0AX0',
-                brand: 'Siemens',
-                category: 'Touch Screens / HMIs',
-                condition: 'Used - Like New',
-                warranty: '12 Months',
-                price: 490.00,
-                originalPrice: 850.00,
-                stock: 2,
-                icon: 'fa-desktop',
-                specs: '7.0" TFT Widescreen Display, 65536 Colors, PROFINET Interface, Key & Touch Operation',
-                serial: 'S VP-K7710922'
-            },
-            {
-                id: 'PLAST-103',
-                title: 'ControlLogix 1756-L71 Processor Unit',
-                mpn: '1756-L71 / A',
-                brand: 'Allen-Bradley',
-                category: 'PLCs & Modules',
-                condition: 'Refurbished / Tested',
-                warranty: '12 Months',
-                price: 1250.00,
-                originalPrice: 2800.00,
-                stock: 1,
-                icon: 'fa-server',
-                specs: '2MB User Memory, USB Port, 500 I/O Capacity, Series A Firmware v32 Verified',
-                serial: 'AB-99201041'
-            },
-            {
-                id: 'PLAST-104',
-                title: 'ABL8RPS24100 Phaseo 24V DC 10A Power Supply',
-                mpn: 'ABL8RPS24100',
-                brand: 'Schneider Electric',
-                category: 'Power Supplies',
-                condition: 'Used - Grade A/B',
-                warranty: '12 Months',
-                price: 115.00,
-                originalPrice: 240.00,
-                stock: 8,
-                icon: 'fa-plug',
-                specs: 'Input 100-500V AC, Output 24V DC 10A (240W), Regulated Switch Mode DIN Rail',
-                serial: 'SE-P24-881'
-            },
-            {
-                id: 'PLAST-105',
-                title: 'ACS355 Variable Frequency Drive 2.2kW',
-                mpn: 'ACS355-03E-08A8-4',
-                brand: 'ABB',
-                category: 'Drives & Inverters',
-                condition: 'Refurbished / Tested',
-                warranty: '12 Months',
-                price: 380.00,
-                originalPrice: 710.00,
-                stock: 3,
-                icon: 'fa-gauge-high',
-                specs: '3-Phase 380-480V, 8.8A, 2.2kW (3HP), IP20, Scalar/Vector Control Mode',
-                serial: 'ABB-D355-0012'
-            },
-            {
-                id: 'PLAST-106',
-                title: 'Sysmac NJ301-1100 Automation Controller',
-                mpn: 'NJ301-1100',
-                brand: 'Omron',
-                category: 'PLCs & Modules',
-                condition: 'Refurbished / Tested',
-                warranty: '12 Months',
-                price: 890.00,
-                originalPrice: 1950.00,
-                stock: 2,
-                icon: 'fa-microchip',
-                specs: 'CPU with EtherCAT & EtherNet/IP Ports, Up to 4 Motion Control Axes',
-                serial: 'OM-NJ3-4110'
-            },
-            {
-                id: 'PLAST-107',
-                title: 'Quint Power 24V DC / 20A Power Supply Unit',
-                mpn: '2866776 QUINT-PS/1AC/24DC/20',
-                brand: 'Phoenix Contact',
-                category: 'Power Supplies',
-                condition: 'Used - Like New',
-                warranty: '12 Months',
-                price: 165.00,
-                originalPrice: 320.00,
-                stock: 6,
-                icon: 'fa-bolt',
-                specs: 'Primary Switch-mode Power Supply, SFB Technology, 1-Phase Input, 24V 20A Output',
-                serial: 'PC-QPS-0099'
-            },
-            {
-                id: 'PLAST-108',
-                title: 'Finder 85 Series Plug-In Timer Relay 24V AC/DC',
-                mpn: '85.04.0.024.0000',
-                brand: 'Finder',
-                category: 'Relays & Contactors',
-                condition: 'Used - Grade A/B',
-                warranty: '12 Months',
-                price: 28.00,
-                originalPrice: 65.00,
-                stock: 15,
-                icon: 'fa-toggle-on',
-                specs: '4 Pole 7A DPDT Multi-Function Timer Relay, 11-Pin Plug-in Socket Type',
-                serial: 'FND-85-12'
-            },
-            {
-                id: 'PLAST-109',
-                title: 'SIMATIC S7-1500 CPU 1511-1 PN',
-                mpn: '6ES7511-1AK02-0AB0',
-                brand: 'Siemens',
-                category: 'PLCs & Modules',
-                condition: 'Refurbished / Tested',
-                warranty: '12 Months',
-                price: 780.00,
-                originalPrice: 1450.00,
-                stock: 2,
-                icon: 'fa-microchip',
-                specs: '150 KB Work memory for Program, 1 MB for Data, PROFINET IRT Interface',
-                serial: 'S VP-S15-992'
-            },
-            {
-                id: 'PLAST-110',
-                title: 'PanelView Plus 700 Touch Screen HMI',
-                mpn: '2711P-T7C4D8',
-                brand: 'Allen-Bradley',
-                category: 'Touch Screens / HMIs',
-                condition: 'Refurbished / Tested',
-                warranty: '12 Months',
-                price: 940.00,
-                originalPrice: 2100.00,
-                stock: 1,
-                icon: 'fa-desktop',
-                specs: '6.5-inch Color Touch Screen Display, Ethernet & RS-232, 24V DC Power',
-                serial: 'AB-PV7-882'
-            }
-        ];
+  <!-- 3. INGEST NEW EQUIPMENT MODAL (ADMIN) -->
+  <div id="add-product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
+    <div class="bg-industrial-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeAddProductModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
 
-        // Global State
-        let cart = [];
-        let filteredProducts = [...products];
+      <div class="flex items-center gap-3 border-b border-slate-800 pb-4 mb-5">
+        <div class="p-2.5 bg-brand-500/10 text-brand-500 rounded-xl border border-brand-500/20">
+          <i data-lucide="plus-circle" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white font-mono-code">Ingest Surplus Automation Item</h3>
+          <p class="text-xs text-slate-400">Add pre-owned equipment to PlasTech live inventory system.</p>
+        </div>
+      </div>
 
-        // Initialize App
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts(products);
-            updateCartUI();
-        });
+      <form id="add-product-form" onsubmit="handleAddProduct(event)" class="space-y-4 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Equipment Name / Title *</label>
+            <input type="text" id="new-title" required placeholder="e.g. Allen-Bradley ControlLogix Processor" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Exact Part Number (MPN) *</label>
+            <input type="text" id="new-partno" required placeholder="e.g. 1756-L73" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none font-mono-code">
+          </div>
+        </div>
 
-        // Render Product Cards
-        function renderProducts(items) {
-            const grid = document.getElementById('productGrid');
-            const noResults = document.getElementById('noResults');
-            const itemCount = document.getElementById('itemCount');
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Brand / OEM *</label>
+            <select id="new-brand" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200">
+              <option value="Allen-Bradley">Allen-Bradley</option>
+              <option value="Siemens">Siemens</option>
+              <option value="ABB">ABB</option>
+              <option value="Pro-face">Pro-face</option>
+              <option value="Omron">Omron</option>
+              <option value="Mitsubishi">Mitsubishi</option>
+              <option value="Schneider">Schneider</option>
+              <option value="Other">Other OEM</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Category *</label>
+            <select id="new-category" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200">
+              <option value="PLCs">PLCs & CPU Modules</option>
+              <option value="Touch Screens / HMIs">Touch Screens / HMIs</option>
+              <option value="AC & DC Drives">AC & DC Drives</option>
+              <option value="Relays & Contactors">Relays & Contactors</option>
+              <option value="Sensors & I/O Modules">Sensors & I/O Modules</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Physical Condition *</label>
+            <select id="new-condition" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200">
+              <option value="Tested & Working">Tested & Working</option>
+              <option value="Refurbished">Refurbished</option>
+              <option value="Like New">Like New (Unused Box)</option>
+              <option value="As-Is Parts">As-Is Parts</option>
+            </select>
+          </div>
+        </div>
 
-            itemCount.textContent = items.length;
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Selling Price (â‚¬ EUR) *</label>
+            <input type="number" step="0.01" id="new-price" required placeholder="1250.00" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none font-mono-code">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Initial Stock Quantity *</label>
+            <input type="number" id="new-stock" required min="1" value="1" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none font-mono-code">
+          </div>
+        </div>
 
-            if (items.length === 0) {
-                grid.innerHTML = '';
-                noResults.classList.remove('hidden');
-                return;
-            }
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Image URL (Optional)</label>
+          <input type="url" id="new-image" placeholder="https://images.unsplash.com/..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+        </div>
 
-            noResults.classList.add('hidden');
-            grid.innerHTML = items.map(p => `
-                <div class="bg-navy-900 border border-slate-800 rounded-xl overflow-hidden hover:border-tech-cyan/50 transition-all duration-300 flex flex-col justify-between group shadow-lg">
-                    <div class="p-4 relative">
-                        <!-- Top Badges -->
-                        <div class="flex justify-between items-start gap-2 mb-3">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700">
-                                ${p.brand}
-                            </span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-tech-cyan/10 text-tech-cyan border border-tech-cyan/20">
-                                ${p.condition}
-                            </span>
-                        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Technical Notes / Specs Summary</label>
+          <textarea id="new-desc" rows="2" placeholder="e.g. 16MB Memory, Ethernet/IP Port built-in, series B..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+        </div>
 
-                        <!-- Graphic Icon Box -->
-                        <div class="w-full h-32 bg-slate-950 rounded-lg flex items-center justify-center border border-slate-800/80 my-2 group-hover:bg-slate-900 transition-colors">
-                            <i class="fa-solid ${p.icon} text-4xl text-slate-600 group-hover:text-tech-cyan transition-colors"></i>
-                        </div>
+        <div class="pt-2 flex justify-end gap-3">
+          <button type="button" onclick="closeAddProductModal()" class="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 font-semibold hover:bg-slate-800">
+            Cancel
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4"></i> Save & Publish to Catalog
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-                        <!-- Product Titles -->
-                        <h3 class="font-bold text-sm text-slate-100 group-hover:text-tech-cyan transition-colors line-clamp-1 mt-2">
-                            ${p.title}
-                        </h3>
-                        <p class="font-mono text-xs text-slate-400 mt-1">MPN: <span class="text-slate-200 font-semibold">${p.mpn}</span></p>
 
-                        <!-- Stock Status -->
-                        <div class="mt-3 flex items-center text-[11px] text-slate-400 font-mono">
-                            <span class="w-2 h-2 rounded-full bg-tech-green mr-1.5"></span>
-                            In Stock: <span class="text-slate-200 font-bold ml-1">${p.stock} pcs</span>
-                        </div>
-                    </div>
+  <!-- 4. QUICK RFQ / DATA SHEET MODAL -->
+  <div id="rfq-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
+    <div class="bg-industrial-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <button onclick="closeRfqModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
 
-                    <!-- Card Footer & Pricing -->
-                    <div class="p-4 border-t border-slate-800 bg-slate-900/50 flex flex-col gap-3">
-                        <div class="flex items-baseline justify-between font-mono">
-                            <div>
-                                <span class="text-xs text-slate-500 line-through">€${p.originalPrice.toFixed(2)}</span>
-                                <span class="text-base font-extrabold text-white block">€${p.price.toFixed(2)}</span>
-                            </div>
-                            <span class="text-[10px] text-slate-400">excl. VAT</span>
-                        </div>
+      <div class="flex items-center gap-3 border-b border-slate-800 pb-4 mb-4">
+        <div class="p-2 bg-brand-500/10 text-brand-500 rounded-lg">
+          <i data-lucide="help-circle" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white font-mono-code">Technical Inquiry / Data Sheet Request</h3>
+          <p class="text-xs text-slate-400">Speak directly with PlasTech engineers.</p>
+        </div>
+      </div>
 
-                        <div class="grid grid-cols-2 gap-2">
-                            <button onclick="openQuickView('${p.id}')" class="px-2 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded transition-all text-center flex items-center justify-center gap-1">
-                                <i class="fa-solid fa-eye"></i> Specs
-                            </button>
-                            <button onclick="addToCart('${p.id}')" class="px-2 py-2 bg-tech-cyan hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded transition-all text-center flex items-center justify-center gap-1 shadow-md">
-                                <i class="fa-solid fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
+      <form onsubmit="handleRfqSubmit(event)" class="space-y-3 text-xs">
+        <div id="rfq-item-preview" class="hidden bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-brand-400 font-mono-code">
+          Inquiry regarding: <span id="rfq-item-title" class="text-white font-bold"></span>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Your Name *</label>
+          <input type="text" required placeholder="Engineer Name" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Email or Phone Number *</label>
+          <input type="text" required placeholder="alan36@me.com or +33 6 02 23 40 74" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Question or Specific Firmware Request</label>
+          <textarea rows="3" required placeholder="Please send pinout diagrams, hi-res photo of terminal blocks, or firmware revision details..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeRfqModal()" class="px-3 py-2 rounded-lg border border-slate-700 text-slate-300">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-bold">Send Inquiry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+
+  <!-- ================= APPLICATION JAVASCRIPT ================= -->
+  <script>
+    // INITIAL DUMMY INVENTORY DATA
+    const INITIAL_PRODUCTS = [
+      {
+        id: 'PT-101',
+        title: 'ControlLogix L73 Processor Unit',
+        partNumber: '1756-L73',
+        brand: 'Allen-Bradley',
+        category: 'PLCs',
+        condition: 'Tested & Working',
+        price: 1720.00,
+        stock: 3,
+        description: '16MB memory, USB port, supports 500 Ethernet/IP connections. Bench tested with RSLogix 5000.',
+        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-102',
+        title: 'SIMATIC S7-1200 CPU 1214C DC/DC/DC',
+        partNumber: '6ES7214-1AG40-0XB0',
+        brand: 'Siemens',
+        category: 'PLCs',
+        condition: 'Refurbished',
+        price: 390.00,
+        stock: 7,
+        description: 'Compact CPU with 14 DI / 10 DO / 2 AI onboard. Firmare v4.4 loaded and factory reset.',
+        image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-103',
+        title: 'Pro-face 10.4-inch Color Touch HMI Screen',
+        partNumber: 'AGP3500-T1-D24',
+        brand: 'Pro-face',
+        category: 'Touch Screens / HMIs',
+        condition: 'Like New',
+        price: 1080.00,
+        stock: 2,
+        description: 'TFT LCD 640x480 resolution touchscreen. Original protective overlay, serial and Ethernet ports.',
+        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-104',
+        title: 'ABB ACS580 15HP 480V General Purpose Drive',
+        partNumber: 'ACS580-01-023A-4',
+        brand: 'ABB',
+        category: 'AC & DC Drives',
+        condition: 'Tested & Working',
+        price: 1190.00,
+        stock: 1,
+        description: 'Wall-mounted VFD with assistant control panel keypad. Checked under full motor load.',
+        image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-105',
+        title: 'Omron Industrial Relay 24VDC 4PDT Pack of 5',
+        partNumber: 'MY4N-DC24',
+        brand: 'Omron',
+        category: 'Relays & Contactors',
+        condition: 'Like New',
+        price: 60.00,
+        stock: 15,
+        description: 'Plug-in industrial relay with LED indicator and push-to-test button. Price per box of 5.',
+        image: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-106',
+        title: 'Point I/O 8-Point Sink Input Module',
+        partNumber: '1734-IB8',
+        brand: 'Allen-Bradley',
+        category: 'Sensors & I/O Modules',
+        condition: 'Tested & Working',
+        price: 135.00,
+        stock: 12,
+        description: '24VDC sink input module for Point I/O backplane base. Tested input status LEDs.',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-107',
+        title: 'Siemens SIMATIC Comfort Panel TP1200',
+        partNumber: '6AV2124-0MC01-0AX0',
+        brand: 'Siemens',
+        category: 'Touch Screens / HMIs',
+        condition: 'Refurbished',
+        price: 2280.00,
+        stock: 1,
+        description: '12.1 inch widescreen TFT display. Clean bezel, newly replaced backlight lamp.',
+        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'PT-108',
+        title: 'Schneider Altivar 320 3.0kW / 4HP VFD Drive',
+        partNumber: 'ATV320U30N4B',
+        brand: 'Schneider',
+        category: 'AC & DC Drives',
+        condition: 'As-Is Parts',
+        price: 195.00,
+        stock: 0,
+        description: 'Powers up but shows ground fault code F034. Sold for internal component salvage.',
+        image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=600&q=80'
+      }
+    ];
+
+    const CATEGORIES = [
+      'ALL',
+      'PLCs',
+      'Touch Screens / HMIs',
+      'AC & DC Drives',
+      'Relays & Contactors',
+      'Sensors & I/O Modules'
+    ];
+
+    // STATE MANAGEMENT
+    let products = JSON.parse(localStorage.getItem('plastech_products')) || INITIAL_PRODUCTS;
+    let cart = JSON.parse(localStorage.getItem('plastech_cart')) || [];
+    let currentTab = 'catalog';
+    let selectedCategory = 'ALL';
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderCategoryTabs();
+      renderCatalog();
+      renderInventoryTable();
+      updateCartBadge();
+    });
+
+    function saveProducts() {
+      localStorage.setItem('plastech_products', JSON.stringify(products));
+      renderCatalog();
+      renderInventoryTable();
+    }
+
+    function saveCart() {
+      localStorage.setItem('plastech_cart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCartDrawer();
+    }
+
+    // TAB SWITCHING LOGIC
+    function switchTab(tab) {
+      currentTab = tab;
+      const catalogView = document.getElementById('tab-catalog-view');
+      const inventoryView = document.getElementById('tab-inventory-view');
+      const navCatalog = document.getElementById('nav-catalog');
+      const navInventory = document.getElementById('nav-inventory');
+      const mobCatalog = document.getElementById('mobile-nav-catalog');
+      const mobInventory = document.getElementById('mobile-nav-inventory');
+
+      if (tab === 'catalog') {
+        catalogView.classList.remove('hidden');
+        inventoryView.classList.add('hidden');
+        
+        navCatalog.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-brand-600 text-white shadow-md";
+        navInventory.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-white transition-all hover:bg-slate-800/60";
+        
+        mobCatalog.className = "flex-1 py-2.5 text-xs font-bold text-center border-b-2 border-brand-500 text-brand-500";
+        mobInventory.className = "flex-1 py-2.5 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent";
+      } else {
+        catalogView.classList.add('hidden');
+        inventoryView.classList.remove('hidden');
+
+        navInventory.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-brand-600 text-white shadow-md";
+        navCatalog.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:text-white transition-all hover:bg-slate-800/60";
+
+        mobInventory.className = "flex-1 py-2.5 text-xs font-bold text-center border-b-2 border-brand-500 text-brand-500";
+        mobCatalog.className = "flex-1 py-2.5 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent";
+      }
+      lucide.createIcons();
+    }
+
+    // CATEGORY TABS RENDER
+    function renderCategoryTabs() {
+      const container = document.getElementById('category-tabs');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = cat === selectedCategory;
+        const activeClasses = isActive ? "bg-brand-600 text-white shadow" : "bg-slate-950 text-slate-400 hover:text-white border border-slate-800";
+        return `
+          <button onclick="selectCategory('${cat}')" class="px-3 py-1.5 rounded-lg font-medium transition-all whitespace-nowrap ${activeClasses}">
+            ${cat === 'ALL' ? 'All Categories' : cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(cat) {
+      selectedCategory = cat;
+      renderCategoryTabs();
+      renderCatalog();
+    }
+
+    // RENDER CATALOG GRID
+    function renderCatalog() {
+      const searchVal = document.getElementById('catalog-search').value.toLowerCase().trim();
+      const brandVal = document.getElementById('catalog-brand-filter').value;
+      const condVal = document.getElementById('catalog-condition-filter').value;
+      const sortVal = document.getElementById('catalog-sort').value;
+      const clearBtn = document.getElementById('clear-search-btn');
+
+      if (searchVal.length > 0) clearBtn.classList.remove('hidden');
+      else clearBtn.classList.add('hidden');
+
+      // Filtering logic
+      let filtered = products.filter(p => {
+        const matchesCat = selectedCategory === 'ALL' || p.category === selectedCategory;
+        const matchesBrand = brandVal === 'ALL' || p.brand === brandVal;
+        const matchesCond = condVal === 'ALL' || p.condition === condVal;
+        const matchesSearch = !searchVal || 
+          p.title.toLowerCase().includes(searchVal) || 
+          p.partNumber.toLowerCase().includes(searchVal) ||
+          p.brand.toLowerCase().includes(searchVal) ||
+          p.description.toLowerCase().includes(searchVal);
+
+        return matchesCat && matchesBrand && matchesCond && matchesSearch;
+      });
+
+      // Sorting
+      if (sortVal === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+      else if (sortVal === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+      else if (sortVal === 'stock') filtered.sort((a,b) => b.stock - a.stock);
+
+      // DOM Updates
+      document.getElementById('catalog-count').innerText = filtered.length;
+      const grid = document.getElementById('catalog-grid');
+      const emptyState = document.getElementById('catalog-empty');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = filtered.map(p => {
+        const isOutOfStock = p.stock <= 0;
+        const stockBadgeClass = p.stock > 2 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : (p.stock > 0 ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-rose-500/10 text-rose-400 border-rose-500/20');
+        const stockText = p.stock > 2 ? `In Stock: ${p.stock} units` : (p.stock > 0 ? `Low Stock: ${p.stock} left` : 'Sold Out / Out of Stock');
+
+        let conditionColor = 'bg-slate-800 text-slate-300';
+        if (p.condition === 'Like New') conditionColor = 'bg-blue-500/20 text-blue-300 border-blue-500/30';
+        if (p.condition === 'Refurbished') conditionColor = 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+        if (p.condition === 'Tested & Working') conditionColor = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+        if (p.condition === 'As-Is Parts') conditionColor = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
+
+        return `
+          <div class="bg-industrial-900 rounded-2xl border border-slate-800 overflow-hidden shadow-lg hover:border-slate-700 transition-all flex flex-col justify-between group">
+            <div>
+              <!-- IMAGE CONTAINER -->
+              <div class="relative h-44 bg-slate-950 overflow-hidden border-b border-slate-800/80">
+                <img src="${p.image}" alt="${p.title}" onerror="this.src='https://placehold.co/600x400/0f172a/f97316?text=${p.brand}+Equipment'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90">
+                <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-900/90 text-slate-200 border border-slate-700 font-mono-code">${p.brand}</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${conditionColor}">${p.condition}</span>
                 </div>
-            `).join('');
-        }
+              </div>
 
-        // Filtering Logic
-        function applyFilters() {
-            const searchTerm = (document.getElementById('searchInput').value || document.getElementById('mobileSearchInput').value || '').toLowerCase();
-            const category = document.getElementById('categorySelect').value;
-            const maxPrice = parseFloat(document.getElementById('priceRange').value);
-            const selectedCondition = document.querySelector('input[name="condition"]:checked').value;
-            const sortMode = document.getElementById('sortSelect').value;
-
-            // Brand Checkboxes
-            const selectedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(cb => cb.value);
-
-            filteredProducts = products.filter(p => {
-                const matchesSearch = p.title.toLowerCase().includes(searchTerm) || 
-                                      p.mpn.toLowerCase().includes(searchTerm) || 
-                                      p.brand.toLowerCase().includes(searchTerm) ||
-                                      p.category.toLowerCase().includes(searchTerm);
-                
-                const matchesCategory = (category === 'All') || (p.category === category);
-                const matchesBrand = (selectedBrands.length === 0) || selectedBrands.includes(p.brand);
-                const matchesCondition = (selectedCondition === 'All') || (p.condition === selectedCondition);
-                const matchesPrice = p.price <= maxPrice;
-
-                return matchesSearch && matchesCategory && matchesBrand && matchesCondition && matchesPrice;
-            });
-
-            // Sorting
-            if (sortMode === 'price-asc') {
-                filteredProducts.sort((a, b) => a.price - b.price);
-            } else if (sortMode === 'price-desc') {
-                filteredProducts.sort((a, b) => b.price - a.price);
-            } else if (sortMode === 'brand') {
-                filteredProducts.sort((a, b) => a.brand.localeCompare(b.brand));
-            }
-
-            renderProducts(filteredProducts);
-        }
-
-        function filterCategory(catName) {
-            document.getElementById('categorySelect').value = catName;
-            
-            // Highlight buttons
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                if(btn.textContent.includes(catName) || (catName === 'All' && btn.textContent.includes('All Categories'))) {
-                    btn.className = 'cat-btn px-3 py-1.5 rounded-md text-tech-cyan bg-slate-800 border border-tech-cyan/30 flex items-center gap-2 transition-all';
-                } else {
-                    btn.className = 'cat-btn px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-2 transition-all';
-                }
-            });
-
-            applyFilters();
-        }
-
-        function updatePriceSlider(val) {
-            document.getElementById('priceValue').textContent = `€${val}`;
-            applyFilters();
-        }
-
-        function handleSearch() {
-            const val = document.getElementById('searchInput').value;
-            document.getElementById('clearSearchBtn').classList.toggle('hidden', !val);
-            applyFilters();
-        }
-
-        function handleMobileSearch() {
-            applyFilters();
-        }
-
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('clearSearchBtn').classList.add('hidden');
-            applyFilters();
-        }
-
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('mobileSearchInput').value = '';
-            document.getElementById('categorySelect').value = 'All';
-            document.getElementById('priceRange').value = 2500;
-            document.getElementById('priceValue').textContent = '€2500';
-            document.querySelectorAll('.brand-checkbox').forEach(cb => cb.checked = false);
-            document.querySelector('input[name="condition"][value="All"]').checked = true;
-            document.getElementById('sortSelect').value = 'featured';
-            
-            filterCategory('All');
-        }
-
-        // Cart Logic
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                if (existingItem.quantity < product.stock) {
-                    existingItem.quantity += 1;
-                    showToast(`Updated quantity for ${product.mpn}`);
-                } else {
-                    showToast(`Cannot add more. Max stock (${product.stock}) reached.`, 'amber');
-                    return;
-                }
-            } else {
-                cart.push({ ...product, quantity: 1 });
-                showToast(`Added ${product.mpn} to Cart`);
-            }
-
-            updateCartUI();
-        }
-
-        function updateQuantity(productId, change) {
-            const item = cart.find(i => i.id === productId);
-            if (!item) return;
-
-            const product = products.find(p => p.id === productId);
-            item.quantity += change;
-
-            if (item.quantity <= 0) {
-                cart = cart.filter(i => i.id !== productId);
-            } else if (item.quantity > product.stock) {
-                item.quantity = product.stock;
-                showToast(`Max stock quantity reached`, 'amber');
-            }
-
-            updateCartUI();
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(i => i.id !== productId);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const badge = document.getElementById('cartBadge');
-            const container = document.getElementById('cartItemsContainer');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-            badge.textContent = totalItems;
-
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-slate-500">
-                        <i class="fa-solid fa-cart-flatbed text-4xl mb-3 text-slate-700"></i>
-                        <p class="text-xs font-mono">Your spare parts cart is empty.</p>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = cart.map(item => `
-                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 flex items-center gap-3">
-                        <div class="w-12 h-12 bg-slate-900 rounded flex items-center justify-center text-tech-cyan text-lg flex-shrink-0">
-                            <i class="fa-solid ${item.icon}"></i>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="font-bold text-xs text-white truncate">${item.title}</h4>
-                            <p class="text-[10px] text-slate-400 font-mono">${item.mpn}</p>
-                            <p class="text-xs font-bold text-tech-cyan font-mono mt-1">€${(item.price * item.quantity).toFixed(2)}</p>
-                        </div>
-                        <div class="flex flex-col items-end gap-1">
-                            <button onclick="removeFromCart('${item.id}')" class="text-slate-500 hover:text-red-400 text-xs">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                            <div class="flex items-center border border-slate-700 rounded bg-slate-900">
-                                <button onclick="updateQuantity('${item.id}', -1)" class="px-2 py-0.5 text-xs text-slate-300 hover:text-white">-</button>
-                                <span class="px-2 py-0.5 text-xs font-mono font-bold text-white">${item.quantity}</span>
-                                <button onclick="updateQuantity('${item.id}', 1)" class="px-2 py-0.5 text-xs text-slate-300 hover:text-white">+</button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            // Calculations
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = cart.length > 0 ? 25.00 : 0;
-            const vat = subtotal * 0.19; // 19% VAT standard EU
-            const total = subtotal + shipping + vat;
-
-            document.getElementById('cartSubtotal').textContent = `€${subtotal.toFixed(2)}`;
-            document.getElementById('cartShipping').textContent = cart.length > 0 ? `€${shipping.toFixed(2)}` : '€0.00';
-            document.getElementById('cartVat').textContent = `€${vat.toFixed(2)}`;
-            document.getElementById('cartTotal').textContent = `€${total.toFixed(2)}`;
-        }
-
-        function toggleCart() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.toggle('hidden');
-        }
-
-        function processCheckout() {
-            if (cart.length === 0) {
-                showToast('Cart is empty. Add items first.', 'amber');
-                return;
-            }
-            alert('Order Request Initialized!\n\nA pro-forma invoice in Euros (€) has been generated. Our automation team will confirm hardware serial numbers before dispatch.');
-            cart = [];
-            updateCartUI();
-            toggleCart();
-        }
-
-        // Quick View Modal
-        function openQuickView(productId) {
-            const p = products.find(item => item.id === productId);
-            if (!p) return;
-
-            const modalContent = document.getElementById('quickViewContent');
-            modalContent.innerHTML = `
-                <div class="flex justify-between items-start pb-4 border-b border-slate-800">
-                    <div>
-                        <span class="text-xs font-mono font-semibold text-tech-cyan uppercase">${p.brand} | ${p.category}</span>
-                        <h2 class="text-lg font-bold text-white mt-0.5">${p.title}</h2>
-                        <p class="font-mono text-xs text-slate-400">MPN / Part Number: <span class="text-slate-200">${p.mpn}</span></p>
-                    </div>
-                    <button onclick="closeQuickView()" class="text-slate-400 hover:text-white">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                    </button>
+              <!-- CARD CONTENT -->
+              <div class="p-4 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono-code font-bold text-brand-500">${p.partNumber}</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded-full border ${stockBadgeClass} font-mono-code font-medium">
+                    ${stockText}
+                  </span>
                 </div>
+                <h3 class="font-bold text-slate-100 text-sm line-clamp-2 leading-snug group-hover:text-brand-400 transition-colors">${p.title}</h3>
+                <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${p.description}</p>
+              </div>
+            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-                    <div class="bg-slate-950 p-6 rounded-lg border border-slate-800 flex flex-col items-center justify-center">
-                        <i class="fa-solid ${p.icon} text-6xl text-tech-cyan my-4"></i>
-                        <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-tech-cyan/10 text-tech-cyan border border-tech-cyan/30">
-                            ${p.condition}
-                        </span>
-                    </div>
+            <!-- CARD FOOTER -->
+            <div class="p-4 pt-0 space-y-3">
+              <div class="flex items-baseline justify-between border-t border-slate-800/80 pt-3">
+                <span class="text-xs text-slate-400 font-medium">Unit Price:</span>
+                <span class="text-xl font-black text-white font-mono-code">â‚¬${p.price.toFixed(2)}</span>
+              </div>
 
-                    <div class="space-y-3 text-xs">
-                        <div class="bg-slate-950 p-3 rounded border border-slate-800 font-mono">
-                            <span class="text-slate-400 block text-[10px]">VERIFIED SERIAL / LOT:</span>
-                            <span class="text-slate-200 font-bold">${p.serial}</span>
-                        </div>
-                        <div>
-                            <span class="text-slate-400 font-mono block mb-1">Technical Specifications:</span>
-                            <p class="text-slate-300 leading-relaxed bg-slate-950/50 p-2.5 rounded border border-slate-800">${p.specs}</p>
-                        </div>
-                        <div class="flex justify-between items-center pt-2">
-                            <span class="text-slate-400 font-mono">Warranty Coverage:</span>
-                            <span class="font-bold text-tech-amber font-mono"><i class="fa-solid fa-shield-halved mr-1"></i> ${p.warranty}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 font-mono">Warehouse Stock:</span>
-                            <span class="font-bold text-tech-green font-mono">${p.stock} units ready</span>
-                        </div>
-                    </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="openRfqModal('${p.id}')" class="px-2.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors flex items-center justify-center gap-1">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-500"></i>
+                  Data Sheet / RFQ
+                </button>
+                <button onclick="addToCart('${p.id}')" ${isOutOfStock ? 'disabled' : ''} class="px-2.5 py-2 rounded-lg ${isOutOfStock ? 'bg-slate-800 text-slate-500 cursor-not-allowed' : 'bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-600/20'} text-xs font-bold transition-all flex items-center justify-center gap-1">
+                  <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+                  ${isOutOfStock ? 'Sold Out' : 'Add to Cart'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function clearSearch() {
+      document.getElementById('catalog-search').value = '';
+      renderCatalog();
+    }
+
+    function resetFilters() {
+      document.getElementById('catalog-search').value = '';
+      document.getElementById('catalog-brand-filter').value = 'ALL';
+      document.getElementById('catalog-condition-filter').value = 'ALL';
+      document.getElementById('catalog-sort').value = 'featured';
+      selectedCategory = 'ALL';
+      renderCategoryTabs();
+      renderCatalog();
+    }
+
+
+    // RENDER INVENTORY MANAGER TABLE (ADMIN)
+    function renderInventoryTable() {
+      const searchVal = (document.getElementById('inv-search')?.value || '').toLowerCase().trim();
+      const stateVal = document.getElementById('inv-state-filter')?.value || 'ALL';
+
+      let items = products.filter(p => {
+        const matchesSearch = !searchVal || 
+          p.title.toLowerCase().includes(searchVal) || 
+          p.partNumber.toLowerCase().includes(searchVal) ||
+          p.brand.toLowerCase().includes(searchVal);
+
+        let matchesState = true;
+        if (stateVal === 'IN_STOCK') matchesState = p.stock > 2;
+        if (stateVal === 'LOW_STOCK') matchesState = p.stock > 0 && p.stock <= 2;
+        if (stateVal === 'OUT_OF_STOCK') matchesState = p.stock <= 0;
+
+        return matchesSearch && matchesState;
+      });
+
+      // Update KPI Statistics Cards
+      const totalSkus = products.length;
+      const totalUnits = products.reduce((acc, p) => acc + p.stock, 0);
+      const totalVal = products.reduce((acc, p) => acc + (p.price * p.stock), 0);
+      const lowStockCount = products.filter(p => p.stock <= 2).length;
+
+      document.getElementById('stat-total-skus').innerText = totalSkus;
+      document.getElementById('stat-total-units').innerText = totalUnits;
+      document.getElementById('stat-total-val').innerText = `â‚¬${totalVal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('stat-low-stock').innerText = lowStockCount;
+      document.getElementById('nav-inv-count').innerText = totalSkus;
+
+      const tbody = document.getElementById('inventory-table-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = items.map(p => {
+        const stockStatusBadge = p.stock > 2 
+          ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono-code">IN STOCK</span>`
+          : (p.stock > 0 
+            ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono-code">LOW STOCK</span>`
+            : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono-code">RESERVED/SOLD</span>`);
+
+        return `
+          <tr class="hover:bg-slate-800/40 transition-colors">
+            <td class="py-3 px-4">
+              <div class="flex items-center gap-3">
+                <img src="${p.image}" class="w-10 h-10 rounded bg-slate-950 object-cover border border-slate-800" onerror="this.src='https://placehold.co/100x100/0f172a/f97316?text=PLC'">
+                <div>
+                  <div class="font-bold text-white font-mono-code">${p.partNumber}</div>
+                  <div class="text-slate-400 text-[11px] truncate max-w-xs">${p.title}</div>
                 </div>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-semibold text-slate-200">${p.brand}</div>
+              <div class="text-[11px] text-slate-500">${p.category}</div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="text-slate-300">${p.condition}</span>
+            </td>
+            <td class="py-3 px-4 font-mono-code font-bold text-white">
+              <div class="flex items-center gap-1">
+                <span>â‚¬</span>
+                <input type="number" step="0.01" value="${p.price}" onchange="updateProductPrice('${p.id}', this.value)" class="w-20 bg-slate-950 border border-slate-700 rounded px-1.5 py-0.5 text-xs text-white focus:outline-none focus:border-brand-500">
+              </div>
+            </td>
+            <td class="py-3 px-4 text-center">
+              <div class="inline-flex items-center bg-slate-950 rounded-lg border border-slate-800 p-0.5">
+                <button onclick="adjustStock('${p.id}', -1)" class="w-6 h-6 hover:bg-slate-800 text-slate-400 hover:text-white rounded flex items-center justify-center font-bold text-sm">-</button>
+                <span class="w-8 text-center font-mono-code font-bold text-brand-400">${p.stock}</span>
+                <button onclick="adjustStock('${p.id}', 1)" class="w-6 h-6 hover:bg-slate-800 text-slate-400 hover:text-white rounded flex items-center justify-center font-bold text-sm">+</button>
+              </div>
+            </td>
+            <td class="py-3 px-4 text-center">
+              ${stockStatusBadge}
+            </td>
+            <td class="py-3 px-4 text-right">
+              <button onclick="deleteProduct('${p.id}')" class="text-slate-500 hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-colors" title="Delete Item">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
 
-                <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="font-mono">
-                        <span class="text-xs text-slate-400">Unit Price:</span>
-                        <span class="text-xl font-bold text-white ml-2">€${p.price.toFixed(2)}</span>
-                        <span class="text-[10px] text-slate-500"> (excl. VAT)</span>
-                    </div>
-                    <div class="flex gap-3 w-full sm:w-auto">
-                        <button onclick="downloadPdfSim('${p.mpn}')" class="flex-1 sm:flex-none px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-file-pdf text-red-400"></i> Spec Sheet
-                        </button>
-                        <button onclick="addToCart('${p.id}'); closeQuickView();" class="flex-1 sm:flex-none px-5 py-2.5 bg-tech-cyan hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-cart-plus"></i> Add To Cart
-                        </button>
-                    </div>
+      lucide.createIcons();
+    }
+
+    // INVENTORY MANAGER ACTIONS
+    function adjustStock(id, delta) {
+      const item = products.find(p => p.id === id);
+      if (item) {
+        item.stock = Math.max(0, item.stock + delta);
+        saveProducts();
+        showToast(`Updated stock for ${item.partNumber}: ${item.stock} in warehouse`, 'info');
+      }
+    }
+
+    function updateProductPrice(id, newPrice) {
+      const val = parseFloat(newPrice);
+      const item = products.find(p => p.id === id);
+      if (item && !isNaN(val) && val >= 0) {
+        item.price = val;
+        saveProducts();
+        showToast(`Updated price for ${item.partNumber} to â‚¬${val.toFixed(2)}`, 'info');
+      }
+    }
+
+    function deleteProduct(id) {
+      const item = products.find(p => p.id === id);
+      if (confirm(`Are you sure you want to delete ${item ? item.partNumber : 'this item'} from PlasTech live inventory?`)) {
+        products = products.filter(p => p.id !== id);
+        saveProducts();
+        showToast('Item deleted from inventory', 'warning');
+      }
+    }
+
+
+    // ADD NEW PRODUCT (ADMIN INGEST)
+    function openAddProductModal() {
+      document.getElementById('add-product-modal').classList.remove('hidden');
+    }
+    function closeAddProductModal() {
+      document.getElementById('add-product-modal').classList.add('hidden');
+    }
+    function handleAddProduct(e) {
+      e.preventDefault();
+      const title = document.getElementById('new-title').value;
+      const partNumber = document.getElementById('new-partno').value;
+      const brand = document.getElementById('new-brand').value;
+      const category = document.getElementById('new-category').value;
+      const condition = document.getElementById('new-condition').value;
+      const price = parseFloat(document.getElementById('new-price').value) || 0;
+      const stock = parseInt(document.getElementById('new-stock').value) || 1;
+      const image = document.getElementById('new-image').value || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80';
+      const description = document.getElementById('new-desc').value || 'Verified surplus automation item.';
+
+      const newObj = {
+        id: 'PT-' + (Math.floor(Math.random() * 900) + 100),
+        title,
+        partNumber,
+        brand,
+        category,
+        condition,
+        price,
+        stock,
+        description,
+        image
+      };
+
+      products.unshift(newObj);
+      saveProducts();
+      closeAddProductModal();
+      document.getElementById('add-product-form').reset();
+      showToast(`Successfully ingested ${partNumber} into live stock!`, 'success');
+    }
+
+
+    // SHOPPING CART LOGIC
+    function addToCart(productId) {
+      const p = products.find(item => item.id === productId);
+      if (!p || p.stock <= 0) return;
+
+      const existing = cart.find(c => c.id === productId);
+      if (existing) {
+        if (existing.qty < p.stock) {
+          existing.qty += 1;
+          showToast(`Added another unit of ${p.partNumber} to cart`, 'success');
+        } else {
+          showToast(`Maximum available stock reached for ${p.partNumber}`, 'warning');
+        }
+      } else {
+        cart.push({ id: productId, qty: 1 });
+        showToast(`Added ${p.partNumber} to cart`, 'success');
+      }
+      saveCart();
+    }
+
+    function updateCartBadge() {
+      const count = cart.reduce((acc, i) => acc + i.qty, 0);
+      document.getElementById('cart-badge').innerText = count;
+    }
+
+    function toggleCart() {
+      const drawer = document.getElementById('cart-drawer');
+      const panel = document.getElementById('cart-panel');
+      const backdrop = document.getElementById('cart-backdrop');
+
+      const isOpen = !drawer.classList.contains('pointer-events-none');
+
+      if (isOpen) {
+        // Close
+        panel.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0');
+        setTimeout(() => {
+          drawer.classList.add('pointer-events-none');
+          backdrop.classList.add('pointer-events-none');
+        }, 300);
+      } else {
+        // Open
+        renderCartDrawer();
+        drawer.classList.remove('pointer-events-none');
+        backdrop.classList.remove('pointer-events-none');
+        setTimeout(() => {
+          panel.classList.remove('translate-x-full');
+          backdrop.classList.remove('opacity-0');
+        }, 10);
+      }
+    }
+
+    function renderCartDrawer() {
+      const container = document.getElementById('cart-items-container');
+      let subtotal = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 text-slate-500 space-y-3">
+            <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto stroke-1"></i>
+            <p class="font-medium text-slate-400">Your cart is currently empty.</p>
+            <p class="text-xs">Browse our catalog and add surplus PLCs, HMIs or drives.</p>
+          </div>
+        `;
+        document.getElementById('cart-subtotal').innerText = '$0.00';
+        document.getElementById('cart-total').innerText = '$0.00';
+        document.getElementById('btn-proceed-checkout').disabled = true;
+        lucide.createIcons();
+        return;
+      }
+
+      document.getElementById('btn-proceed-checkout').disabled = false;
+
+      container.innerHTML = cart.map(item => {
+        const p = products.find(prod => prod.id === item.id);
+        if (!p) return '';
+        const lineTotal = p.price * item.qty;
+        subtotal += lineTotal;
+
+        return `
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex gap-3 items-center">
+            <img src="${p.image}" class="w-14 h-14 object-cover rounded-lg bg-slate-900 border border-slate-800" onerror="this.src='https://placehold.co/100x100/0f172a/f97316?text=PLC'">
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-start">
+                <span class="font-mono-code text-xs font-bold text-brand-400">${p.partNumber}</span>
+                <button onclick="removeFromCart('${p.id}')" class="text-slate-500 hover:text-rose-400">
+                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <h4 class="text-xs font-bold text-white truncate">${p.title}</h4>
+              <div class="text-[11px] text-slate-400">â‚¬${p.price.toFixed(2)} each</div>
+
+              <div class="flex justify-between items-center mt-2">
+                <div class="inline-flex items-center bg-industrial-900 rounded border border-slate-800 p-0.5">
+                  <button onclick="changeCartQty('${p.id}', -1)" class="w-5 h-5 text-slate-400 hover:text-white flex items-center justify-center font-bold text-xs">-</button>
+                  <span class="w-6 text-center font-mono-code text-xs text-white">${item.qty}</span>
+                  <button onclick="changeCartQty('${p.id}', 1)" class="w-5 h-5 text-slate-400 hover:text-white flex items-center justify-center font-bold text-xs">+</button>
                 </div>
-            `;
+                <span class="font-mono-code font-bold text-xs text-white">â‚¬${lineTotal.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
 
-            document.getElementById('quickViewModal').classList.remove('hidden');
+      document.getElementById('cart-subtotal').innerText = `â‚¬${subtotal.toFixed(2)}`;
+      document.getElementById('cart-total').innerText = `â‚¬${subtotal.toFixed(2)}`;
+      lucide.createIcons();
+    }
+
+    function changeCartQty(id, delta) {
+      const item = cart.find(c => c.id === id);
+      const p = products.find(prod => prod.id === id);
+      if (!item || !p) return;
+
+      const newQty = item.qty + delta;
+      if (newQty <= 0) {
+        removeFromCart(id);
+      } else if (newQty <= p.stock) {
+        item.qty = newQty;
+        saveCart();
+      } else {
+        showToast(`Only ${p.stock} units available in stock`, 'warning');
+      }
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(c => c.id !== id);
+      saveCart();
+      showToast('Item removed from cart', 'info');
+    }
+
+
+    // CHECKOUT / QUOTE MODAL
+    function openCheckoutModal() {
+      if (cart.length === 0) return;
+      toggleCart(); // close drawer
+
+      const summaryList = document.getElementById('checkout-summary-list');
+      let total = 0;
+      let count = 0;
+
+      summaryList.innerHTML = cart.map(c => {
+        const p = products.find(item => item.id === c.id);
+        if (!p) return '';
+        total += p.price * c.qty;
+        count += c.qty;
+        return `<div class="flex justify-between">
+          <span>${c.qty}x ${p.partNumber} (${p.brand})</span>
+          <span>â‚¬${(p.price * c.qty).toFixed(2)}</span>
+        </div>`;
+      }).join('');
+
+      document.getElementById('checkout-item-count').innerText = `${count} Total Units`;
+      document.getElementById('checkout-total-val').innerText = `â‚¬${total.toFixed(2)}`;
+
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.add('hidden');
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      
+      // Deduct stock in real-time
+      cart.forEach(c => {
+        const p = products.find(item => item.id === c.id);
+        if (p) {
+          p.stock = Math.max(0, p.stock - c.qty);
         }
+      });
 
-        function closeQuickView() {
-            document.getElementById('quickViewModal').classList.add('hidden');
+      saveProducts();
+      cart = [];
+      saveCart();
+
+      closeCheckoutModal();
+      showToast('Quote Request & Purchase Inquiry Received! PlasTech team will call you shortly.', 'success');
+    }
+
+
+    // QUICK RFQ MODAL LOGIC
+    function openRfqModal(productId = null) {
+      const modal = document.getElementById('rfq-modal');
+      const preview = document.getElementById('rfq-item-preview');
+      const titleSpan = document.getElementById('rfq-item-title');
+
+      if (productId) {
+        const p = products.find(item => item.id === productId);
+        if (p) {
+          titleSpan.innerText = `${p.partNumber} - ${p.title}`;
+          preview.classList.remove('hidden');
         }
+      } else {
+        preview.classList.add('hidden');
+      }
 
-        // RFQ Modal
-        function openRfqModal() {
-            document.getElementById('rfqModal').classList.remove('hidden');
-        }
+      modal.classList.remove('hidden');
+    }
 
-        function closeRfqModal() {
-            document.getElementById('rfqModal').classList.add('hidden');
-        }
+    function closeRfqModal() {
+      document.getElementById('rfq-modal').classList.add('hidden');
+    }
 
-        function handleRfqSubmit(e) {
-            e.preventDefault();
-            closeRfqModal();
-            showToast('RFQ submitted! Our sourcing engineers will email you within 2 hours.', 'green');
-            document.getElementById('rfqForm').reset();
-        }
+    function handleRfqSubmit(e) {
+      e.preventDefault();
+      closeRfqModal();
+      showToast('Technical inquiry submitted. A PlasTech automation specialist will email you data sheets within 15 mins.', 'success');
+    }
 
-        function downloadPdfSim(mpn) {
-            showToast(`Downloading Datasheet_${mpn}.pdf...`, 'cyan');
-        }
 
-        // Toast Notification system
-        function showToast(message, type = 'cyan') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            
-            let borderClass = 'border-tech-cyan';
-            let textClass = 'text-tech-cyan';
-            if (type === 'amber') { borderClass = 'border-tech-amber'; textClass = 'text-tech-amber'; }
-            if (type === 'green') { borderClass = 'border-tech-green'; textClass = 'text-tech-green'; }
+    // DYNAMIC TOAST SYSTEM
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
 
-            toast.className = `bg-navy-900 border ${borderClass} text-slate-200 px-4 py-3 rounded-lg shadow-2xl text-xs font-mono flex items-center gap-2 pointer-events-auto transition-all transform translate-y-2 opacity-0`;
-            toast.innerHTML = `<i class="fa-solid fa-circle-info ${textClass}"></i> <span>${message}</span>`;
+      let borderClass = 'border-brand-500/30 bg-industrial-900 text-slate-100';
+      let icon = 'info';
 
-            container.appendChild(toast);
+      if (type === 'success') {
+        borderClass = 'border-emerald-500/40 bg-slate-900 text-emerald-300';
+        icon = 'check-circle2';
+      } else if (type === 'warning') {
+        borderClass = 'border-amber-500/40 bg-slate-900 text-amber-300';
+        icon = 'alert-triangle';
+      }
 
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl border ${borderClass} shadow-2xl text-xs font-semibold transform transition-all duration-300 translate-y-2 opacity-0 max-w-sm`;
+      
+      toast.innerHTML = `
+        <i data-lucide="${icon}" class="w-4 h-4 shrink-0"></i>
+        <span>${message}</span>
+      `;
 
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
+      container.appendChild(toast);
+      lucide.createIcons();
 
-        function toggleMobileMenu() {
-            alert('PLASTECH Direct Navigation:\n- Call Support: +33 602234074\n- Email: sales@plastech-automation.eu\n- Working hours: Mon-Fri 08:00 - 17:00 CET');
-        }
-    </script>
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+  </script>
 </body>
 </html>
